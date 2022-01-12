@@ -6,20 +6,24 @@ function timer() {
     //setInterval will execute function every one sec
     var t = setInterval(() => {
       //increment of second
-      this.domS = this.domS + 1;
-      if (this.domS == 60) {
-        //It is whole minute Now
-        //As domS reached 60
-        this.domS = 0;
-        //Minute variable will be incremented
-        this.domM = this.domM + 1;
+      if (this.event == true) {
+        /*This part has some problem*/
+        console.log(this.domS)
+        this.domS = this.domS + 1;
+        if (this.domS == 60) {
+          //It is whole minute Now
+          //As domS reached 60
+          this.domS = 0;
+          //Minute variable will be incremented
+          this.domM = this.domM + 1;
         if (this.domM == 60) {
           //Whole hour is passed
           this.domM = 0;
           //Hour is incremented
           this.domH = this.domH + 1;
-        }
-      }
+        };
+      };
+
       //At every interval
       //after updating variables
       //This checkpoint checks if we have to stop
@@ -32,6 +36,8 @@ function timer() {
         //from playing sound
         sound.stop();
       }
+    }
+  //  else {console.log('ok')}
     },1000);
 };
 
@@ -47,11 +53,14 @@ let vm =  new Vue({
       this.event = true;
       if (this.inputS !== 0
         && this.event == true) {
-        this.event = this.timer();
+        this.timer();
         sound.play();
      }
    },
     timer: timer,
+    stopToggle() {
+      this.event = !this.event;
+    }
   },
 })
 
