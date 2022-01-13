@@ -1,6 +1,41 @@
 body {
   margin: 0;
 }
-h1 {
-  color:red;
+
+.display-timer {
+  border:1px solid red;
+  text-align:center
+}
+
+.display-form {
+   border:1px solid red;
+}
+
+.display-form button {
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:20px;
+}
+
+input {
+  width: 30px;
+}
+
+
+.display-box {
+  border: 1px solid red;
+}
+
+.container {
+  border: 1px solid red;
+  display:flex;
+  flex-direction: column;
+  min-height: 60vh;
+  flex-wrap: nowrap;
+  /*justify-content: center;*/
+}
+
+.box {
+   width: 400px
 }

@@ -11,17 +11,31 @@
   </head>
   <body>
     <div id = 'test' >
+      <h1>Meditation Timer</h1>
+        <div class = 'container'>
+       <div class = 'box display-timer'>
       <h1>{{domH}} : {{domM}} : {{domS}}</h1>
+      <button v-on:click="stopToggle" v-if = "pausePlayButtonDisplay">Pause/Play</button>
+      <button v-on:click = "resetButtonEvent" v-if = 'resetButtonDisplay'>Reset</button>
+      </div>
+
+      <div class = 'box display-form'>
       <label for = 'Hours'>Hours:</label>
       <input type = 'text' v-model = 'inputH'>
       <label for = "Minutes">Minutes:</label>
       <input type = 'text' v-model = 'inputM'>
       <label for = "Seconds">Seconds:</label>
       <input type = 'text' v-model = 'inputS'>
-      <button v-on:click = 'meditationEvent' >Start</button>
+      <button v-on:click = 'meditationEvent' id = 'start' v-if = 'startButtonDisplay'>Start</button>
+      </div>
 
-
-<button v-on:click="stopToggle">Pause/Play</button>
+      <div class = 'box display-box'>
+        <p>Practice done for</p>
+        <p>Hours: {{doneH}}</p>
+        <p>Minutes: {{doneM}}</p>
+        <p>Seconds: {{doneS}}</p>
+      </div>
+    </div>
     </div>
   </body>
 </html>

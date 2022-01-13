@@ -1,14 +1,8 @@
 function timer() {
-    //intialization of three reactive variables
-    this.domS = 0;
-    this.domM = 0;
-    this.domH = 0;
     //setInterval will execute function every one sec
     var t = setInterval(() => {
       //increment of second
       if (this.event == true) {
-        /*This part has some problem*/
-        console.log(this.domS)
         this.domS = this.domS + 1;
         if (this.domS == 60) {
           //It is whole minute Now
@@ -23,18 +17,21 @@ function timer() {
           this.domH = this.domH + 1;
         };
       };
-
       //At every interval
       //after updating variables
       //This checkpoint checks if we have to stop
-      if (this.inputS == this.domS &&
+      if ((this.inputS == this.domS &&
         this.inputM == this.domM &&
-        this.inputH == this.domH) {
+        this.inputH == this.domH)
+        || this.resetBooleanEvent
+        ) {
         //This statement will stop interval function
         clearInterval(t);
         //This will stop Howler object
         //from playing sound
         sound.stop();
+        this.sessionHistory();
+        this.reintialize();
       }
     }
   //  else {console.log('ok')}
@@ -44,15 +41,28 @@ function timer() {
 let vm =  new Vue({
   el:'#test',
   data: {domS: 0, domM: 0, domH: 0,
-      inputS: 0, inputM: 0, inputH: 0, event:false},
+      inputS: 0, inputM: 0, inputH: 0,
+      doneS:0, doneM:0, doneH:0,
+       event:false, resetBooleanEvent:false,
+       resetButtonDisplay:false,
+       pausePlayButtonDisplay:false,
+       startButtonDisplay:true},
   methods: {
     //This is function that runs
     //everything in the project
     //it is triggered by start button
     meditationEvent() {
+      this.reintialize();
+
       this.event = true;
+      this.resetBooleanEvent = false;
+
       if (this.inputS !== 0
         && this.event == true) {
+          console.log(this.inputS);
+          this.pausePlayButtonDisplay = true;
+          this.startButtonDisplay = false;
+          this.resetButtonDisplay = true;
         this.timer();
         sound.play();
      }
@@ -60,7 +70,28 @@ let vm =  new Vue({
     timer: timer,
     stopToggle() {
       this.event = !this.event;
-    }
+      if (!this.event) {sound.stop()}
+      else {sound.play()}
+    },
+    resetButtonEvent() {
+      this.resetBooleanEvent = true;
+    },
+    reintialize() {
+      this.event = false;
+      this.resetBooleanEvent = false;
+
+      this.resetButtonDisplay = false;
+      this.pausePlayButtonDisplay = false;
+      this.startButtonDisplay = true;
+      this.domS = 0;
+      this.domM = 0;
+      this.domH = 0;
+    },
+    sessionHistory() {
+      this.doneS += this.domS;
+      this.doneM += this.domM;
+      this.doneH += this.domH
+    },
   },
 })
 
@@ -69,9 +100,3 @@ var sound = new Howl({
    src: ['audio/audio1.mp3'],
    loop:true
 });
-
-//Now my goal is different
-
-//if this.event is true
-//run the timer
-//if false stop it.
