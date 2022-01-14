@@ -14,7 +14,7 @@
       <h1>Meditation Timer</h1>
         <div class = 'container'>
        <div class = 'box display-timer'>
-      <h1>{{domH}} : {{domM}} : {{domS}}</h1>
+      <p>{{domH}} : {{domM}} : {{domS}}</p>
       <button v-on:click="stopToggle" v-if = "pausePlayButtonDisplay">Pause/Play</button>
       <button v-on:click = "resetButtonEvent" v-if = 'resetButtonDisplay'>Reset</button>
       </div>
