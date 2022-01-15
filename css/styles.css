@@ -21,12 +21,11 @@ h1 {
 }
 
 .display-timer {
-  border:1px solid red;
   text-align:center
 }
 
 .display-form {
-   border:1px solid red;
+
 }
 
 .display-form button {
@@ -42,18 +41,17 @@ input {
 
 /**/
 .display-box {
-  border: 1px solid red;
 }
 
 .container {
-  border: 1px solid red;
   display:flex;
   flex-direction: column;
   min-height: 60vh;
-  flex-wrap: nowrap;
-  /*justify-content: center;*/
+  gap: 5px;
+  margin: auto;
+  align-items: center;
 }
 
 .box {
-   width: 400px
+   width: 300px;
 }
