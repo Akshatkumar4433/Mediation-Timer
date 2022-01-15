@@ -1,4 +1,4 @@
-# Mediation-app
+# Mediation-Timer
 This is simple mediation timer
 Using Vue.js
 
